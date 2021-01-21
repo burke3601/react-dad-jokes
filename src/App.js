@@ -27,12 +27,12 @@ function App() {
       const response = await jokePromise;
       const jokeData = await response.json();
       console.log(jokeData.joke);
-      //setJoke(jokeData.joke);
+      setJoke(jokeData.joke);
   }
     getJoke();
-  });
+  }, []);
 
-  const [joke, setJoke] = useState('knock knowk');
+  const [joke, setJoke] = useState("");
   
   console.log(`this is the joke in state: `, joke)
 
