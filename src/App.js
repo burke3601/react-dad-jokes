@@ -17,7 +17,7 @@ function App() {
       });
       const response = await jokePromise;
       const jokeData = await response.json();
-      console.log(jokeData.joke);
+      //console.log(jokeData.joke);
       setJoke(jokeData.joke);
   }
     
@@ -26,12 +26,12 @@ function App() {
     getJoke();
   }, []);
 
-  console.log(`this is the joke in state: `, joke)
+  //console.log(`this is the joke in state: `, joke)
 
   return (
     <div className="App">
         <Header />
-        <JokeButton getJoke={getJoke}/>
+        <JokeButton handleClick={getJoke}/>
         <JokeContainer  joke={joke}/>
 
     </div>

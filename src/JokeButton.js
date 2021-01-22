@@ -4,7 +4,7 @@ function JokeButton(props) {
     return(
         <nav>
             <button 
-                onClick={props.getJoke}
+                onClick={props.handleClick}
             >
                 Get a new Joke!
             </button>
