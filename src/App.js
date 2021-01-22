@@ -7,7 +7,9 @@ import JokeContainer from './JokeContainer';
 
 
 function App() {
-  const [joke, setJoke] = useState("");
+  //const [joke, setJoke] = useState("");
+  const [jokeArray, setJokeArray] = useState([])
+  
   async function getJoke(){
     // fetch the joke
       const jokePromise = fetch('https://icanhazdadjoke.com', {
@@ -17,13 +19,33 @@ function App() {
       });
       const response = await jokePromise;
       const jokeData = await response.json();
-      //console.log(jokeData.joke);
-      setJoke(jokeData.joke);
+      console.log(jokeData);
+      //setJoke(jokeData.joke);
+      //jokeArray.push(jokeData.joke);
+      setJokeArray([
+        ...jokeArray, 
+        jokeData
+      ]);
+    }
+
+  function deleteJoke (id) {
+    //.filter out a joke from the jokeArray
+      //use the joke's id to identify the joke to delete
+    // setJokeArry using the newly filtered array 
+    console.log(`you want to delete ${id}`)
+    const filteredArray = jokeArray.filter(j => {
+      if (j.id === id) {
+        return false;
+      } else {
+        return true;
+      }
+    })
+    setJokeArray(filteredArray);
   }
-    
+
   useEffect(() => {
    
-    getJoke();
+    //getJoke();
   }, []);
 
   //console.log(`this is the joke in state: `, joke)
@@ -32,7 +54,10 @@ function App() {
     <div className="App">
         <Header />
         <JokeButton handleClick={getJoke}/>
-        <JokeContainer  joke={joke}/>
+        <JokeContainer  
+          jokes={jokeArray}
+          handleDelete={deleteJoke}
+        />
 
     </div>
   );
