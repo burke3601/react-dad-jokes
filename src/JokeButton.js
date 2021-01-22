@@ -1,9 +1,11 @@
 import React from 'react';
 
-function JokeButton() {
+function JokeButton(props) {
     return(
         <nav>
-            <button >
+            <button 
+                onClick={props.getJoke}
+            >
                 Get a new Joke!
             </button>
         </nav>
